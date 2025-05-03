@@ -1,0 +1,3 @@
+# bullsai/pnpm-workspace.yaml
+packages:
+  - 'packages/*'

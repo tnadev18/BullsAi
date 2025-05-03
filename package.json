@@ -1,0 +1,16 @@
+{
+  "name": "bullsai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pnpm --parallel --stream --filter \"./packages/**\" run dev",
+    "start:dev": "pnpm --parallel --stream --filter \"./packages/**\" run start:dev" 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.10.0"
+  
+}
