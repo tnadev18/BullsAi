@@ -12,14 +12,20 @@ async function bootstrap() {
     const nodeEnv = configService.get('NODE_ENV', 'development');
     const frontendUrl = configService.get('FRONTEND_URL');
     app.enableCors({
-        origin: frontendUrl || 'http://localhost:3000',
+        origin: frontendUrl || '*',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         credentials: true,
     });
     app.setGlobalPrefix('api');
+    app.useGlobalPipes(new common_1.ValidationPipe({ transform: true, whitelist: true }));
     await app.listen(port);
     logger.log(`🚀 Application is running in [${nodeEnv}] mode on: http://localhost:${port}/api`);
-    logger.log(`🔌 CORS enabled for origin: ${frontendUrl || 'http://localhost:3000'}`);
+    if (frontendUrl) {
+        logger.log(`🔌 CORS enabled for origin: ${frontendUrl}`);
+    }
+    else {
+        logger.warn(`🔌 CORS enabled for '*' - Consider restricting in production.`);
+    }
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

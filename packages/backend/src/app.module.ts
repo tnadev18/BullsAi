@@ -1,24 +1,23 @@
-// packages/backend/src/app.module.ts
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from './auth/auth.module'; // Import AuthModule
-import { HttpModule } from '@nestjs/axios'; // Import HttpModule globally if needed often
-import { AuthController } from './auth/auth.controller';
-import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module'; // Assuming you have AuthModule from previous setup
+import { HttpModule } from '@nestjs/axios'; // Ensure HttpModule is imported if needed globally or here
+import { MarketdataModule } from './marketdata/marketdata.module'; // <-- Import MarketdataModule
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true, // Make ConfigService available globally
-      envFilePath: `.env.${process.env.NODE_ENV || 'development'}`, // Load .env.development or .env.production etc.
-      cache: true, // Improve performance by caching variables
+      isGlobal: true,
+      envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,
+      cache: true,
     }),
-    AuthModule, // Add AuthModule here
-    HttpModule, // Make HttpModule available (used by AuthService)
+    HttpModule, // Make HttpModule available globally or import it in specific modules like MarketdataModule
+    AuthModule, // Existing AuthModule
+    MarketdataModule, // <-- Add MarketdataModule here
   ],
-  controllers: [AppController, AuthController],
-  providers: [AppService, AuthService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

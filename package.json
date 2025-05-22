@@ -6,11 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "pnpm --parallel --stream --filter \"./packages/**\" run dev",
-    "start:dev": "pnpm --parallel --stream --filter \"./packages/**\" run start:dev" 
+    "start:dev": "pnpm --parallel --stream --filter \"./packages/**\" run start:dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.10.0"
-  
+  "packageManager": "pnpm@10.10.0",
+  "dependencies": {
+    "lightweight-charts": "^5.0.6"
+  }
 }

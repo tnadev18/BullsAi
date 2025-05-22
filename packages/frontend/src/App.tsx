@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// packages\frontend\src\App.tsx
+
+import React from 'react';
+import MarketChart from './components/MarketChart';
+import './App.css'; // Keep basic App styles if needed
 
 function App() {
-  const [count, setCount] = useState(0)
+  // Hardcoded parameters for the simple chart display
+  const symbol = 'NSE_EQ|INE848E01016';
+  const interval = 'day';
+  const fromDate = '2024-01-01'; // Example start date
+  const toDate = '2024-03-15';   // Example end date
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <h1>BullsAI Simple Market Chart</h1>
+      {/* Removed form controls */}
+
+      <div className="chart-container">
+        <MarketChart
+          // Key ensures component remounts if parameters were dynamic,
+          // less critical here but good practice.
+          key={`${symbol}-${interval}-${fromDate}-${toDate}`}
+          symbol={symbol}
+          interval={interval}
+          from={fromDate}
+          to={toDate}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

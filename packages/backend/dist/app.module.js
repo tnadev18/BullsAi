@@ -13,8 +13,7 @@ const app_service_1 = require("./app.service");
 const config_1 = require("@nestjs/config");
 const auth_module_1 = require("./auth/auth.module");
 const axios_1 = require("@nestjs/axios");
-const auth_controller_1 = require("./auth/auth.controller");
-const auth_service_1 = require("./auth/auth.service");
+const marketdata_module_1 = require("./marketdata/marketdata.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -26,11 +25,12 @@ exports.AppModule = AppModule = __decorate([
                 envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,
                 cache: true,
             }),
-            auth_module_1.AuthModule,
             axios_1.HttpModule,
+            auth_module_1.AuthModule,
+            marketdata_module_1.MarketdataModule,
         ],
-        controllers: [app_controller_1.AppController, auth_controller_1.AuthController],
-        providers: [app_service_1.AppService, auth_service_1.AuthService],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
